@@ -1,0 +1,6 @@
+#2.数据库配置
+dataSource:
+  url: jdbc:mysql://192.168.128.1:3306/test?useUnicode=true&amp;characterEncoding=utf-8
+  username: root
+  password: 123456
+  driverClassName: com.mysql.jdbc.Driver
