@@ -1,8 +1,8 @@
 package com.lzumetal.mall.api.service;
 
-import com.lzumetal.mall.api.dao.base.BaseDao;
+import com.lzumetal.mall.common.utils.com.lzumetal.mall.common.base.BaseDao;
 import com.lzumetal.mall.api.dao.UserDao;
-import com.lzumetal.mall.api.service.base.BaseServiceImpl;
+import com.lzumetal.mall.common.core.service.BaseServiceImpl;
 import com.lzumetal.mall.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

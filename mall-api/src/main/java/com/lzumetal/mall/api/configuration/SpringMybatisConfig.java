@@ -44,7 +44,7 @@ public class SpringMybatisConfig {
             SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
             bean.setDataSource(dataSource);
             ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-            bean.setConfigLocation(resolver.getResource("classpath:mybatis-config.yml"));
+            bean.setConfigLocation(resolver.getResource("classpath:mybatis-config.properties"));
             //bean.setMapperLocations(resolver.getResources("classpath:mapper/*.xml"));
             //bean.setTypeAliasesPackage("com.lzumetal.mall.pojo");
             factory = bean.getObject();

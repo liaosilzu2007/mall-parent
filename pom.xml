@@ -16,6 +16,7 @@
         <module>mall-provider</module>
         <module>mall-web</module>
         <module>mall-openapi</module>
+        <module>mall-common-core</module>
     </modules>
 
     <parent>
@@ -44,17 +45,16 @@
 
     <build>
         <plugins>
-<!--            <plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>1.5.8.RELEASE</version>
 
                 <configuration>
-                    &lt;!&ndash;这里是main启动类的全路径&ndash;&gt;
+                    <!--这里是main启动类的全路径-->
                     <mainClass>com.lzumetal.mall.StartupApplication</mainClass>
                 </configuration>
-            </plugin>-->
-
+            </plugin>
         </plugins>
     </build>
 </project>

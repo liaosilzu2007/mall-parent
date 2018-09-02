@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @date 2018-08-26
  */
 @Component
-@PropertySource(value = "classpath:mybatis-config.yml")
+@PropertySource(value = "classpath:mybatis-config.properties")
 @ConfigurationProperties(prefix = "mybatisconfig")
 public class SqlSessionFactoryConfig {
 

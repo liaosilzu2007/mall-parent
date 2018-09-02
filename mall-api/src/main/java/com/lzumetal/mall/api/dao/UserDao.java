@@ -1,6 +1,6 @@
 package com.lzumetal.mall.api.dao;
 
-import com.lzumetal.mall.api.dao.base.AbstractBaseDao;
+import com.lzumetal.mall.common.utils.com.lzumetal.mall.common.base.AbstractBaseDao;
 import com.lzumetal.mall.pojo.User;
 import org.springframework.stereotype.Repository;
 

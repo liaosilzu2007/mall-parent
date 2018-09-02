@@ -1,8 +1,7 @@
+# 1.æ•°æ®åº“é…ç½®
+dataSource:
+  url: jdbc:mysql://192.168.128.1:3306/test?useUnicode=true&amp;characterEncoding=utf-8
+  username: root
+  password: 123456
+  driverClassName: com.mysql.jdbc.Driver
 
-#Êı¾İ¿âÅäÖÃspring:
-spring:
-  datasource:
-    url: jdbc:mysql://192.168.128.1:3306/test?useUnicode=true&amp;characterEncoding=utf-8
-    username: root
-    password: 123456
-    driverClassName: com.mysql.jdbc.Driver
