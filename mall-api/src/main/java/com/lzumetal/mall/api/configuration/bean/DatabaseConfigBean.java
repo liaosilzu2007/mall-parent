@@ -1,13 +1,17 @@
-package com.lzumetal.mall.api.configuration;
+package com.lzumetal.mall.api.configuration.bean;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 
 /**
  * @author liaosi
  * @date 2018-08-26
  */
-//@Component
-//@PropertySource(value = "classpath:datasource.yml")
-//@ConfigurationProperties(prefix = "datasource")
-public class DataSourceConfig {
+@Component
+@PropertySource(value = "classpath:database.properties")
+@ConfigurationProperties(prefix = "database")
+public class DatabaseConfigBean {
 
     private String url;
 
@@ -16,6 +20,7 @@ public class DataSourceConfig {
     private String username;
 
     private String password;
+
 
     public String getUrl() {
         return url;

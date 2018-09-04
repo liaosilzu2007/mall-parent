@@ -1,57 +1,76 @@
 package com.lzumetal.mall.api.configuration;
 
+import com.alibaba.druid.pool.DruidDataSource;
+import com.github.pagehelper.PageInterceptor;
+import com.lzumetal.mall.api.configuration.bean.DatabaseConfigBean;
+import com.lzumetal.mall.api.configuration.bean.MybatisConfigBean;
+import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 
 import javax.sql.DataSource;
+import java.util.Properties;
 
 /**
  * @author liaosi
  * @date 2018-08-26
  */
+@Configuration
 public class SpringMybatisConfig {
 
-//    @Autowired
-//    private DataSourceConfig dataSourceConfig;
+    @Autowired
+    private DatabaseConfigBean databaseConfig;
 
     @Autowired
-    private SqlSessionFactoryConfig sqlSessionFactoryConfig;
-
-//    @Bean(value = "dataSource")
-//    public DataSource dataSource() {
-//        DruidDataSource dataSource = new DruidDataSource();
-//        try {
-//            dataSource.setDriverClassName(dataSourceConfig.getDriverClassName());
-//            dataSource.setUrl(dataSourceConfig.getUrl());
-//            dataSource.setUsername(dataSourceConfig.getUsername());
-//            dataSource.setPassword(dataSourceConfig.getPassword());
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//        return dataSource;
-//    }
-
+    private MybatisConfigBean mybatisConfig;
 
     @Bean
-    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) {
-        SqlSessionFactory factory = null;
+    public DataSource dataSource() {
+        DruidDataSource dataSource = new DruidDataSource();
         try {
-            SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
-            bean.setDataSource(dataSource);
-            ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-            bean.setConfigLocation(resolver.getResource("classpath:mybatis-config.properties"));
-            //bean.setMapperLocations(resolver.getResources("classpath:mapper/*.xml"));
-            //bean.setTypeAliasesPackage("com.lzumetal.mall.pojo");
-            factory = bean.getObject();
+            dataSource.setDbType("com.alibaba.druid.pool.DruidDataSource");
+            dataSource.setDriverClassName(databaseConfig.getDriverClassName());
+            dataSource.setUrl(databaseConfig.getUrl());
+            dataSource.setUsername(databaseConfig.getUsername());
+            dataSource.setPassword(databaseConfig.getPassword());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return factory;
+        return dataSource;
+    }
+
+
+    @Bean(value = "sqlSessionFactory")
+    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) {
+        System.err.println("========================== sqlSessionFactory 初始化 =================================");
+        SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
+        //数据库
+        factoryBean.setDataSource(dataSource);
+
+        //分页插件
+        Properties properties = new Properties();
+        properties.setProperty("helperDialect", "mysql");
+        properties.setProperty("offsetAsPageNum", "true");
+        properties.setProperty("rowBoundsWithCount", "true");
+        properties.setProperty("reasonable", "true");
+        Interceptor interceptor = new PageInterceptor();
+        interceptor.setProperties(properties);
+        factoryBean.setPlugins(new Interceptor[] {interceptor});
+
+        try {
+            ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+            factoryBean.setMapperLocations(resolver.getResources(mybatisConfig.getMapperLocations()));
+            factoryBean.setTypeAliasesPackage(mybatisConfig.getTypeAliasesPackage());
+            return factoryBean.getObject();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Bean

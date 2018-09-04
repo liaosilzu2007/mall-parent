@@ -1,7 +1,15 @@
 # 1.数据库配置
-dataSource:
-  url: jdbc:mysql://192.168.128.1:3306/test?useUnicode=true&amp;characterEncoding=utf-8
-  username: root
-  password: 123456
-  driverClassName: com.mysql.jdbc.Driver
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://192.168.128.1:3306/mall?useUnicode=true&amp;characterEncoding=utf-8
+#    username: root
+#    password: 123456
+#
+#
+# 2.mybatis配置
+#mybatis:
+#  type-aliases-package: com.lzumetal.mall.pojo
+#  mapper-locations: classpath:mapper/*.xml
+
 

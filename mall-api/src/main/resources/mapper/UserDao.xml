@@ -4,17 +4,24 @@
 <mapper namespace="UserDao">
 
     <resultMap id="BaseResultMap" type="com.lzumetal.mall.pojo.User">
-        <result column="id" jdbcType="INTEGER" property="id"/>
-        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="FID" jdbcType="INTEGER" property="id"/>
+        <result column="FNAME" jdbcType="VARCHAR" property="name"/>
+        <result column="FPHONE" jdbcType="VARCHAR" property="phone"/>
     </resultMap>
 
 
     <insert id="insert" parameterType="User" useGeneratedKeys="true" keyProperty="id">
-      INSERT INTO t_user(name, phone)
+      INSERT INTO T_USER(FNAME, FPHONE)
       VALUES (
         #{name,jdbcType=VARCHAR},
         #{phone,jdbcType=VARCHAR}
       )
     </insert>
+
+    <select id="getById" resultMap="BaseResultMap">
+        SELECT FID, FNAME, FPHONE
+        FROM T_USER
+        WHERE FID = #{id}
+    </select>
 
 </mapper>

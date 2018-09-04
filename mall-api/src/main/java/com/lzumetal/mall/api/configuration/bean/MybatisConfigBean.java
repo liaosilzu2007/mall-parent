@@ -1,4 +1,4 @@
-package com.lzumetal.mall.api.configuration;
+package com.lzumetal.mall.api.configuration.bean;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @PropertySource(value = "classpath:mybatis-config.properties")
-@ConfigurationProperties(prefix = "mybatisconfig")
-public class SqlSessionFactoryConfig {
+@ConfigurationProperties(prefix = "mybatis")
+public class MybatisConfigBean {
 
     private String mapperLocations;
 
