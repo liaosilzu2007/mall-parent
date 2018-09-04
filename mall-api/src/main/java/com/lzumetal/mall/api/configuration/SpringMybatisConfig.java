@@ -46,7 +46,7 @@ public class SpringMybatisConfig {
     }
 
 
-    @Bean(value = "sqlSessionFactory")
+    @Bean
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) {
         System.err.println("========================== sqlSessionFactory 初始化 =================================");
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
