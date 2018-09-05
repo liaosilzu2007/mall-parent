@@ -3,7 +3,7 @@ package com.lzumetal.mall.provider.test;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.lzumetal.mall.StartupApplication;
-import com.lzumetal.mall.api.configuration.bean.DatabaseConfigBean;
+import com.lzumetal.mall.api.configuration.bean.DatasourceConfigBean;
 import com.lzumetal.mall.api.configuration.bean.MybatisConfigBean;
 import com.lzumetal.mall.api.service.UserService;
 import com.lzumetal.mall.pojo.User;
@@ -30,7 +30,7 @@ public class UserTest {
     private MybatisConfigBean mybatisConfig;
 
     @Autowired
-    private DatabaseConfigBean databaseConfig;
+    private DatasourceConfigBean databaseConfig;
 
     @Test
     public void insertUser() {

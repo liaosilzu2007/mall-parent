@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
  * @date 2018-08-26
  */
 @Component
-@PropertySource(value = "classpath:database.properties")
+@PropertySource(value = "classpath:datasource.properties")
 @ConfigurationProperties(prefix = "database")
-public class DatabaseConfigBean {
+public class DatasourceConfigBean {
 
     private String url;
 
@@ -20,6 +20,12 @@ public class DatabaseConfigBean {
     private String username;
 
     private String password;
+
+    private int initialSize;
+
+    private int minIdle;
+
+    private int maxActive;
 
 
     public String getUrl() {
@@ -52,5 +58,29 @@ public class DatabaseConfigBean {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getInitialSize() {
+        return initialSize;
+    }
+
+    public void setInitialSize(int initialSize) {
+        this.initialSize = initialSize;
+    }
+
+    public int getMinIdle() {
+        return minIdle;
+    }
+
+    public void setMinIdle(int minIdle) {
+        this.minIdle = minIdle;
+    }
+
+    public int getMaxActive() {
+        return maxActive;
+    }
+
+    public void setMaxActive(int maxActive) {
+        this.maxActive = maxActive;
     }
 }

@@ -2,7 +2,7 @@ package com.lzumetal.mall.api.configuration;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.github.pagehelper.PageInterceptor;
-import com.lzumetal.mall.api.configuration.bean.DatabaseConfigBean;
+import com.lzumetal.mall.api.configuration.bean.DatasourceConfigBean;
 import com.lzumetal.mall.api.configuration.bean.MybatisConfigBean;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -25,7 +25,7 @@ import java.util.Properties;
 public class SpringMybatisConfig {
 
     @Autowired
-    private DatabaseConfigBean databaseConfig;
+    private DatasourceConfigBean datasourceConfig;
 
     @Autowired
     private MybatisConfigBean mybatisConfig;
@@ -35,10 +35,14 @@ public class SpringMybatisConfig {
         DruidDataSource dataSource = new DruidDataSource();
         try {
             dataSource.setDbType("com.alibaba.druid.pool.DruidDataSource");
-            dataSource.setDriverClassName(databaseConfig.getDriverClassName());
-            dataSource.setUrl(databaseConfig.getUrl());
-            dataSource.setUsername(databaseConfig.getUsername());
-            dataSource.setPassword(databaseConfig.getPassword());
+            dataSource.setDriverClassName(datasourceConfig.getDriverClassName());
+            dataSource.setUrl(datasourceConfig.getUrl());
+            dataSource.setUsername(datasourceConfig.getUsername());
+            dataSource.setPassword(datasourceConfig.getPassword());
+
+            dataSource.setInitialSize(datasourceConfig.getInitialSize());
+            dataSource.setMinIdle(datasourceConfig.getMinIdle());
+            dataSource.setMaxActive(datasourceConfig.getMaxActive());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
