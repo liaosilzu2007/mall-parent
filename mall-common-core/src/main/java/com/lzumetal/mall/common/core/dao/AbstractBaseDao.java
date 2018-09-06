@@ -21,9 +21,7 @@ public abstract class AbstractBaseDao<T> extends SqlSessionDaoSupport implements
 
     private static final String INSERT = ".insert";
 
-    private static final String GET_BY_ID = ".getById";
-
-    private static final String GET_BY_IDS = ".getByIds";
+    private static final String SELECT = ".select";
 
     private static final String UPDATE_BY_ID = ".updateById";
 
@@ -59,13 +57,13 @@ public abstract class AbstractBaseDao<T> extends SqlSessionDaoSupport implements
 
     @Override
     public T getById(Long id) {
-        return getSqlSession().selectOne(this.getNampSpace() + GET_BY_ID, id);
+        return getSqlSession().selectOne(this.getNampSpace() + SELECT, id);
     }
 
 
     @Override
     public List<T> getByIds(Collection<Long> ids) {
-        return getSqlSession().selectList(this.getNampSpace() + GET_BY_IDS, ids);
+        return getSqlSession().selectList(this.getNampSpace() + SELECT, ids);
     }
 
 
